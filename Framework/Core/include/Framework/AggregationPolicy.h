@@ -55,6 +55,7 @@ class AggregationPolicy
   AggregationMetricType getAggregationTypeForMetric(std::string_view metricName) const;
   /// Evaluates whether the policy allows processing for the provided device name.
   bool selectDevice(std::string_view deviceId) const;
+
  private:
   /// Maps a regular expression pattern to a specific aggregation type.
   struct MetricRule {

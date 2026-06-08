@@ -22,7 +22,8 @@
 
 using namespace o2::framework::metricaggregator;
 
-std::vector<std::string> AggregationPolicy::split(std::string_view input, char delim) const {
+std::vector<std::string> AggregationPolicy::split(std::string_view input, char delim) const
+{
   std::vector<std::string> tokens;
   std::string token;
   std::istringstream tokenStream{std::string(input)};
@@ -71,7 +72,7 @@ void AggregationPolicy::configureFromEnv()
 
       std::stringstream metricsStream(envMetrics);
       std::string metricRuleStr;
-      while(std::getline(metricsStream, metricRuleStr, ';')) {
+      while (std::getline(metricsStream, metricRuleStr, ';')) {
         auto pos = metricRuleStr.find(':');
         if (pos == std::string::npos) {
           throw std::invalid_argument("Invalid metric rule format: " + metricRuleStr);
@@ -138,8 +139,6 @@ AggregationMetricType AggregationPolicy::parseReductionType(const std::string& s
   }
   throw std::invalid_argument("Invalid reduction type: " + str);
 }
-
-
 
 bool AggregationPolicy::selectDevice(std::string_view deviceId) const
 {
