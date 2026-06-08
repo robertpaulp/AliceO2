@@ -50,19 +50,20 @@ class MetricAggregator
   /// Returns the current policy configuration as a formatted string.
   std::string getPolicy();
   /// Routes metrics to the appropriate processing function based on the policy reduction type.
-  void mergeMetrics(const std::vector<DeviceMetricsInfo>& metrics, 
-                    const DeviceMetricsInfo& driverMetrics, 
+  void mergeMetrics(const std::vector<DeviceMetricsInfo>& metrics,
+                    const DeviceMetricsInfo& driverMetrics,
                     const std::vector<DeviceSpec>& specs);
+
  private:
   /// Appends a suffix to the metric name based on the applied aggregation type.
   std::string getMetricNameFromPolicy(std::string_view metricName, AggregationMetricType aggregationType);
   /// Flushes metrics directly without aggregation.
-  void flushMetricsSimple(const std::vector<DeviceMetricsInfo>& deviceMetrics, 
-                          const DeviceMetricsInfo& driverMetrics, 
+  void flushMetricsSimple(const std::vector<DeviceMetricsInfo>& deviceMetrics,
+                          const DeviceMetricsInfo& driverMetrics,
                           const std::vector<DeviceSpec>& specs);
   /// Flushes metrics by applying the aggregation policy.
-  void flushMetrics(const std::vector<DeviceMetricsInfo>& deviceMetrics, 
-                    const DeviceMetricsInfo& driverMetrics, 
+  void flushMetrics(const std::vector<DeviceMetricsInfo>& deviceMetrics,
+                    const DeviceMetricsInfo& driverMetrics,
                     const std::vector<DeviceSpec>& specs);
   /// Retrieves the monitoring backend type from environment variables.
   const char* getBackendFromEnv();
@@ -70,7 +71,7 @@ class MetricAggregator
   const char* mBackend = nullptr;
   std::unique_ptr<o2::monitoring::Monitoring> mMonitoring;
   /// Stores the previous samples required to compute rates over time.
-  std::unordered_map<std::string,std::vector<MetricSample>> mLastSentSamples;
+  std::unordered_map<std::string, std::vector<MetricSample>> mLastSentSamples;
   std::unique_ptr<AggregationPolicy> mPolicy;
 };
 } // namespace metricaggregator

@@ -2160,7 +2160,7 @@ int runStateMachine(DataProcessorSpecs const& workflow,
                          driverInfo.resourcesMonitoringDumpInterval * 1000);
         }
 
-        if(std::getenv("ALIEN_JDL_AGGREGATOR_POLICY") != nullptr) {
+        if (std::getenv("ALIEN_JDL_AGGREGATOR_POLICY") != nullptr) {
           uv_timer_init(loop, &aggregationMetricTimer);
           uv_timer_start(&aggregationMetricTimer, aggregateMetricsCallback, O2_METRICAGGREGATOR_INTERVAL * 1000, O2_METRICAGGREGATOR_INTERVAL * 1000);
         }
